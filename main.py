@@ -1,5 +1,8 @@
 from flask import Flask, send_from_directory
 import os
+import dotenv
+
+dotenv.load_dotenv()
 
 app = Flask(__name__)
 
@@ -22,4 +25,5 @@ def serve_pdf(filename):
     return send_from_directory(PDF_DIR, filename)
 
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
     app.run(debug=True)
